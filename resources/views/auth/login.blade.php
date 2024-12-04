@@ -60,10 +60,10 @@
                     Login
                 </button>
             </form>
-            <p class="text-center text-gray-600 mt-6">
+            {{-- <p class="text-center text-gray-600 mt-6">
                 don't have an account? 
                 <a href="/signup" class="text-indigo-800 font-semibold hover:text-blue-900 transition-colors duration-300">Signup</a>
-            </p>
+            </p> --}}
         </div>
 
     </div>

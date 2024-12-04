@@ -13,7 +13,7 @@ class LessonController extends Controller
         $lessons = Lesson::all();
         return view('components.lesson-management',compact('lessons'));
     }
-    public function getAllDataToClients(){
+    public function getAllDataToClients(Request $request){
         $lessons = Lesson::all();
         $students = Student::leftJoin('score', 'students.student_id', '=', 'score.student_id')
                            ->select('students.student_id as s_id', 'students.*', 'score.*')
@@ -23,8 +23,13 @@ class LessonController extends Controller
                            })
                            ->orWhereNull('score.student_id') // Include students with no scores
                            ->get();
+                            // Get the title filter value from the request
+    $title = $request->input('title', '');  // Default to an empty string if no title is provided
+
+    // Query lessons based on the title
+    $resultLessons = Lesson::where('title', 'like', '%' . $title . '%')->get();
         
-        return view('welcome',compact('lessons', 'students'));
+        return view('welcome',compact('lessons', 'students', 'resultLessons'));
     }
     public function storeLessons(Request $request){
 
@@ -61,5 +66,7 @@ class LessonController extends Controller
         $lesson->update($validateLessons);
         return redirect('dashboard/courses')->with('success', 'Lesson updated successfully.');
     }
+
+
 
 }

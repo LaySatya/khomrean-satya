@@ -37,9 +37,9 @@ Route::get('/login', function () {
 // logout
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 //signup
-Route::get('/signup', function () {
-    return view('auth.signup');
-});
+// Route::get('/signup', function () {
+//     return view('auth.signup');
+// });
 Route::post('/signup', [UserController::class, 'signup']);
 Route::post('/login', [UserController::class, 'login']);
 
@@ -54,3 +54,5 @@ Route::post('/dashboard/courses', [LessonController::class, 'storeLessons']);
 Route::get('/dashboard/remove-lesson/{id}', [LessonController::class, 'removeLesson']);
 //edit lessons
 Route::put('/dashboard/edit-lesson/{id}', [LessonController::class, 'updateLesson']);
+
+// Route::get('/filterLesson', [LessonController::class, 'filterLessons'])->name('filter.lessons');
